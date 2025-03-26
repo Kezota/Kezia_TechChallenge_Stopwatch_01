@@ -1,6 +1,9 @@
+// COMMENT: The stopwatch.js file contains the logic for the stopwatch functionality
 import { saveStopwatch } from "./storage.js";
 
+// COMMENT: Function to start or stop (pause) the stopwatch
 export function startStop(startStopBtn, display, state) {
+  // COMMENT: If the stopwatch is running, stop it. Otherwise, start it
   if (state.isRunning) {
     clearInterval(state.interval);
     startStopBtn.textContent = "Start";
@@ -19,9 +22,11 @@ export function startStop(startStopBtn, display, state) {
     }, 10);
     startStopBtn.textContent = "Pause";
   }
+
   state.isRunning = !state.isRunning;
 }
 
+// COMMENT: Function to reset the stopwatch
 export function reset(startStopBtn, display, lapsList, state) {
   clearInterval(state.interval);
   state.centiseconds = 0;
@@ -34,6 +39,7 @@ export function reset(startStopBtn, display, lapsList, state) {
   updateDisplay(display, state);
 }
 
+// COMMENT: Function to record a lap
 export function lap(display, lapsList, state) {
   if (state.isRunning) {
     const lapTime = display.textContent;
@@ -45,10 +51,7 @@ export function lap(display, lapsList, state) {
   }
 }
 
-export function getLaps(lapsList) {
-  return Array.from(lapsList.children).map((li) => li.textContent);
-}
-
+// COMMENT: Function to update the display
 export function updateDisplay(display, state) {
   display.textContent = `${String(state.minutes).padStart(2, "0")}:${String(
     state.seconds
@@ -63,4 +66,9 @@ export function updateDisplay(display, state) {
     },
     getLaps(lapsList)
   );
+}
+
+// COMMENT: Function to get the lap times from the laps list
+function getLaps(lapsList) {
+  return Array.from(lapsList.children).map((li) => li.textContent);
 }

@@ -1,6 +1,8 @@
-import { startStop, reset, lap, getLaps, updateDisplay } from "./stopwatch.js";
+// COMMENT: The main.js file is the base file that contains the main logic of the application
+import { startStop, reset, lap } from "./stopwatch.js";
 import { loadStopwatch } from "./storage.js";
 
+// COMMENT: Using the DOMContentLoaded event to ensure that the script runs after the HTML & CSS have fully loaded
 document.addEventListener("DOMContentLoaded", () => {
   const display = document.getElementById("display");
   const startStopBtn = document.getElementById("startStopBtn");
@@ -16,19 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
     isRunning: false,
   };
 
-  // COMMENT: Load stopwatch data from local storage
-  const loadedData = loadStopwatch();
-  state.minutes = loadedData.currentTime.minutes || 0;
-  state.seconds = loadedData.currentTime.seconds || 0;
-  state.centiseconds = loadedData.currentTime.centiseconds || 0;
-
-  // COMMENT: Display the loaded stopwatch data
-  loadedData.laps.forEach((lapTime) => {
-    const li = document.createElement("li");
-    li.textContent = lapTime;
-    lapsList.appendChild(li);
-  });
-  updateDisplay(display, state);
+  // COMMENT: Load stopwatch data from local storage (if any) when the page loads
+  loadStopwatch(display, lapsList, state);
 
   // COMMENT: Add event listeners when the buttons are clicked
   startStopBtn.addEventListener("click", () =>
