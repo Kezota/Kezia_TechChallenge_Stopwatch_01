@@ -33,7 +33,7 @@ Check out the live version of the stopwatch:
 
 ## 📸 Screenshots
 
-![Screenshot of the stopwatch](assets/screenshot.jpg)
+![Screenshot of the stopwatch](assets/screenshot.png)
 
 ## 🔧 Installation
 
