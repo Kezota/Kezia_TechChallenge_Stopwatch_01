@@ -9,10 +9,15 @@
   <body>
     <div class="card">
       <div class="header">
-        <h1>Online Stopwatch</h1>
+        <h3>Online Stopwatch</h3>
       </div>
       <div class="stopwatch">
-        <div class="time" id="display">00:00:00</div>
+        <div class="time">
+          <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="centiseconds">00</span>
+        </div>
+        <div class="time-text">
+          <span class="text-minutes">minutes</span><span class="text-seconds">seconds</span><span class="text-centiseconds">centiseconds</span>
+        </div>
         <div class="buttons">
           <button id="startStopBtn">Start</button>
           <button id="resetBtn">Reset</button>
@@ -22,7 +27,6 @@
       <div class="laps">
         <ul id="lapsList"></ul>
       </div>
-      <ul class="todos"></ul>
     </div>
 
     <script type="module" src="js/main.js"></script>
