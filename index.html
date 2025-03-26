@@ -4,8 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stopwatch | Tech Challenge</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Stopwatch</h1>
+    <div class="card">
+      <div class="header">
+        <h1>Online Stopwatch</h1>
+      </div>
+      <div class="stopwatch">
+        <div class="time" id="display">00:00:00</div>
+        <div class="buttons">
+          <button id="startStopBtn">Start</button>
+          <button id="resetBtn">Reset</button>
+          <button id="lapBtn">Lap</button>
+        </div>
+      </div>
+      <div class="laps">
+        <ul id="lapsList"></ul>
+      </div>
+      <ul class="todos"></ul>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
   </body>
 </html>
