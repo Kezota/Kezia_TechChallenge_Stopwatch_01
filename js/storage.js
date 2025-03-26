@@ -16,7 +16,7 @@ export function saveStopwatch(currentTime, laps) {
 export function loadStopwatch(display, lapsList, state) {
   // COMMENT: Load stopwatch data from local storage
   const stopwatchData = JSON.parse(localStorage.getItem("stopwatchData")) || {
-    currentTime: 0,
+    currentTime: { minutes: 0, seconds: 0, centiseconds: 0 },
     laps: [],
   };
 
@@ -25,6 +25,7 @@ export function loadStopwatch(display, lapsList, state) {
   state.centiseconds = stopwatchData.currentTime.centiseconds || 0;
 
   // COMMENT: Display the loaded stopwatch data
+  lapsList.innerHTML = "";
   stopwatchData.laps.forEach((lapTime) => {
     const li = document.createElement("li");
     li.textContent = lapTime;

@@ -41,8 +41,23 @@ export function reset(startStopBtn, display, lapsList, state) {
 
 // COMMENT: Function to record a lap
 export function lap(display, lapsList, state) {
-  if (state.isRunning) {
-    const lapTime = display.textContent;
+  // COMMENT: If the stopwatch is running or the time is not 0, record a lap
+  if (
+    state.isRunning ||
+    state.centiseconds !== 0 ||
+    state.seconds !== 0 ||
+    state.minutes !== 0
+  ) {
+    const firstLap = lapsList.firstChild;
+    const lapTime = `${String(state.minutes).padStart(2, "0")}:${String(
+      state.seconds
+    ).padStart(2, "0")}:${String(state.centiseconds).padStart(2, "0")}`;
+
+    // COMMENT: If the first lap is the same as the lapTime, don't record it
+    if (firstLap && firstLap.textContent === lapTime) {
+      return;
+    }
+
     const li = document.createElement("li");
     li.textContent = lapTime;
     lapsList.insertBefore(li, lapsList.firstChild);
@@ -53,9 +68,12 @@ export function lap(display, lapsList, state) {
 
 // COMMENT: Function to update the display
 export function updateDisplay(display, state) {
-  display.textContent = `${String(state.minutes).padStart(2, "0")}:${String(
-    state.seconds
-  ).padStart(2, "0")}:${String(state.centiseconds).padStart(2, "0")}`;
+  display.minutes.textContent = String(state.minutes).padStart(2, "0");
+  display.seconds.textContent = String(state.seconds).padStart(2, "0");
+  display.centiseconds.textContent = String(state.centiseconds).padStart(
+    2,
+    "0"
+  );
 
   // COMMENT: Save the stopwatch data to local storage
   saveStopwatch(
